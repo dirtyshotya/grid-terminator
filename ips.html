@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit IPs - Retro 80s Neon Style</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: midnightblue;
+            background-image: url("/wifi2.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.925rem;
+            color: lightseagreen;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 5px magenta, 0 0 10px magenta, 0 0 15px magenta;
+        }
+
+        .navbar {
+            font-size: 1.75rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(0, 0, 0, .7);
+            padding: 5px 0; /* Reduced padding to half */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .navbar a,
+        .navbar button {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            padding: 5px 10px; /* Reduced padding to half */
+            margin: 5px;
+            font-family: 'Press Start 2P', sans-serif;
+            cursor: pointer;
+            text-shadow: 0 0 5px magenta;
+            transition: all .3s ease;
+            font-size: 0.5rem; /* Reduced font size to half */
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+            text-decoration: none;
+            width: 100px; /* Adjusted width */
+            text-align: center;
+        }
+
+        .navbar a:hover,
+        .navbar button:hover {
+            box-shadow: 0 0 20px magenta, 0 0 30px magenta, 0 0 40px magenta;
+            color: white;
+        }
+
+        .container {
+            max-width: 300px; /* Reduced size */
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-top: 100px;
+        }
+
+        .neon-text {
+            font-size: 1.25rem; /* Match the size of the Wi-Fi text */
+            color: lightseagreen;
+            text-shadow: 0 0 5px magenta, 0 0 10px magenta, 0 0 15px magenta;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-control {
+            background-color: transparent;
+            border: 2px solid #65ff00;
+            color: lightseagreen;
+            font-family: 'Press Start 2P', cursive;
+            width: 100%;
+            padding: 5px; /* Reduced padding */
+            margin-top: 10px;
+            font-size: 0.9625rem;
+            text-shadow: 0 0 5px magenta;
+            box-shadow: 0 0 10px magenta;
+        }
+
+        .form-control::placeholder {
+            color: #ff00ff;
+        }
+
+        .btn-custom {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            text-shadow: 0 0 5px magenta;
+            font-family: 'Press Start 2P', cursive;
+            padding: 7.5px 15px; /* Reduced to 3/4 of the original */
+            margin: 10px 0;
+            transition: all .3s ease;
+            font-size: 0.721875rem; /* Reduced to 3/4 of the original */
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+            width: 100%;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff00ff;
+            border: 1px solid #ff00ff;
+            color: #000;
+        }
+
+        /* Custom Scrollbar Styles */
+        /* Works on Chrome, Edge, and Safari */
+        ::-webkit-scrollbar {
+            width: 8px; /* width of the entire scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #333; /* color of the track */
+            border: 2px solid #65ff00; /* add some spacing between the track and handle */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #333; /* dark background color of the scroll thumb */
+            border-radius: 10px; /* roundness of the scroll thumb */
+            border: 2px solid magenta; /* light seagreen border around the thumb */
+        }
+
+        /* Hover effects */
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: magenta; /* light seagreen color of the scroll thumb when hovered */
+        }
+
+        /* Firefox scrollbar styles */
+        html {
+            scrollbar-width: thin; /* make scrollbar thin */
+            scrollbar-color: magenta #333; /* thumb and track color */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/settings.html">Settings</a>
+        <a href="ips.html">Set IPs</a>
+        <a href="wifi.html">Set Wi-Fi</a>
+    </nav>
+    <div class="container">
+        <h1 class="neon-text">Submit IP Addresses</h1>
+        <form class="ipForm" data-index="1">
+            <div class="form-group">
+                <label for="ip1" class="neon-text">IP Address 1</label>
+                <input type="text" class="form-control" id="ip1" name="ip" placeholder="Enter IP Address">
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Submit</button>
+        </form>
+        <!-- Repeat form for each IP address up to 5 -->
+        <form class="ipForm" data-index="2">
+            <div class="form-group">
+                <label for="ip2" class="neon-text">IP Address 2</label>
+                <input type="text" class="form-control" id="ip2" name="ip" placeholder="Enter IP Address">
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Submit</button>
+        </form>
+        <form class="ipForm" data-index="3">
+            <div class="form-group">
+                <label for="ip3" class="neon-text">IP Address 3</label>
+                <input type="text" class="form-control" id="ip3" name="ip" placeholder="Enter IP Address">
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Submit</button>
+        </form>
+        <form class="ipForm" data-index="4">
+            <div class="form-group">
+                <label for="ip4" class="neon-text">IP Address 4</label>
+                <input type="text" class="form-control" id="ip4" name="ip" placeholder="Enter IP Address">
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Submit</button>
+        </form>
+        <form class="ipForm" data-index="5">
+            <div class="form-group">
+                <label for="ip5" class="neon-text">IP Address 5</label>
+                <input type="text" class="form-control" id="ip5" name="ip" placeholder="Enter IP Address">
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $('.ipForm').on('submit', function (event) {
+            event.preventDefault();
+
+            const form = $(this);
+            const ip = form.find('input[name="ip"]').val().trim();
+            const index = form.data('index');
+            const data = { ip: ip, index: index };
+
+            $.ajax({
+                url: '/ips',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    alert('Success: ' + response);
+                },
+                error: function (xhr) {
+                    alert('An error occurred: ' + xhr.responseText);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

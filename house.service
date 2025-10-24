@@ -1,0 +1,13 @@
+[Unit]
+Description=Lux Tuner Service
+After=network.target
+
+[Service]
+Type=simple
+User=100acresranch
+WorkingDirectory=/home/100acresranch/house
+ExecStart=/home/100acresranch/house/house.zsh
+Environment="PYTHONPATH=$PYTHONPATH:/home/100acresranch/
+
+[Install]
+WantedBy=multi-user.target

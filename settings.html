@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Device Configuration Update</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            background: url("/settings.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Press Start 2P';
+            font-size: 1.925rem; /* Reduced from 2.2rem by 1/8 */
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            color: lightseagreen;
+            text-align: center;
+            text-shadow: 0 0 5px magenta, 0 0 10px magenta, 0 0 15px magenta;
+        }
+
+        .btn-custom,
+        .btn-threshold {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            padding: 5px 10px;
+            margin: 5px;
+            font-family: 'Press Start 2P', sans-serif;
+            cursor: pointer;
+            text-shadow: 0 0 5px magenta;
+            transition: all .3s ease;
+            font-size: 0.5rem; /* Match the size in the first file */
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+            text-decoration: none;
+            width: 100px; /* Match the width in the first file */
+            text-align: center; /* Match the alignment in the first file */
+        }
+
+        .btn-custom:hover,
+        .btn-threshold:hover {
+            box-shadow: 0 0 20px magenta, 0 0 30px magenta, 0 0 40px magenta;
+            color: white;
+        }
+
+        @keyframes animatedHr {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 100%;
+            }
+        }
+
+        hr {
+            height: 2px;
+            border: 0;
+            background: linear-gradient(to right, lightseagreen, #ff0085, darkblue);
+            background-size: 200% auto;
+            animation: animatedHr 4s linear infinite;
+        }
+
+        input,
+        button {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            margin: 5px 0;
+            padding: 5px 10px;
+            font-size: 0.5rem; /* Match the size in the first file */
+            text-shadow: 0 0 5px magenta;
+            font-family: 'Press Start 2P', sans-serif;
+            box-shadow: 0 0 10px magenta;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 100px; /* Added margin at the top */
+            padding: 20px;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .block {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+        }
+
+        iframe {
+            height: 225px;
+            width: 225px;
+        }
+
+        #voltageFrame {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            height: 225px;
+            width: 225px;
+            border: none; /* Remove border */
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px; /* width of the entire scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #333; /* color of the track */
+            border: 2px solid #65ff00; /* add some spacing between the track and handle */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #333; /* dark background color of the scroll thumb */
+            border-radius: 10px; /* roundness of the scroll thumb */
+            border: 2px solid magenta; /* light seagreen border around the thumb */
+        }
+
+        /* Hover effects */
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: purple; /* light seagreen color of the scroll thumb when hovered */
+        }
+
+        /* Firefox scrollbar styles */
+        html {
+            scrollbar-width: thin; /* make scrollbar thin */
+            scrollbar-color: magenta #333; /* thumb and track color */
+        }
+
+        .navbar {
+            font-size: 1.75rem; /* Reduced from 2rem by 1/8 */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(0, 0, 0, .7);
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .navbar a,
+        .navbar button {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            padding: 10px 20px;
+            margin: 5px;
+            font-family: 'Press Start 2P', sans-serif;
+            cursor: pointer;
+            text-shadow: 0 0 5px magenta;
+            transition: all .3s ease;
+            font-size: 0.5rem; /* Match the size in the first file */
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+            text-decoration: none;
+            text-align: center; /* Match the alignment in the first file */
+        }
+
+        .navbar a:hover,
+        .navbar button:hover {
+            box-shadow: 0 0 20px magenta, 0 0 30px magenta, 0 0 40px magenta;
+            color: white;
+        }
+
+        .threshold-title,
+        .multiplier-title {
+            font-size: 1.4rem; /* Reduced size for threshold and multiplier titles */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/settings.html">Settings</a>
+        <a href="ips.html" class="btn-custom">Set IPs</a>
+        <a href="wifi.html" class="btn-custom">Set Wi-Fi</a>
+    </nav>
+    <div>
+        <iframe id="voltageFrame" src="/voltage" frameborder="0" allowtransparency="true" name="voltageFrame"></iframe>
+    </div>
+    <div class="container">
+        <div class="block">
+            <h2 class="multiplier-title">Voltage Multiplier</h2>
+            <form action="/multiplier" method="post">
+                <div class="form-group">
+                    <input type="text" name="multiplier" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Voltage Multiplier</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Shared Top Threshold Configuration</h2>
+            <hr>
+            <form action="/update-top-threshold" method="post">
+                <div class="form-group">
+                    <input type="text" name="threshold" required="">
+                </div>
+                <button type="submit" class="btn-threshold">Update Shared Threshold</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Shared Bottom Threshold Configuration</h2>
+            <hr>
+            <form action="/update-bottom-threshold" method="post">
+                <div class="form-group">
+                    <input type="text" name="threshold" required="">
+                </div>
+                <button type="submit" class="btn-threshold">Update Shared Threshold</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Shared On Threshold Configuration</h2>
+            <hr>
+            <form action="/update-on-threshold" method="post">
+                <div class="form-group">
+                    <input type="text" name="threshold" required="">
+                </div>
+                <button type="submit" class="btn-threshold">Update Shared Threshold</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Shared Off Threshold Configuration</h2>
+            <hr>
+            <form action="/update-off-threshold" method="post">
+                <div class="form-group">
+                    <input type="text" name="threshold" required="">
+                </div>
+                <button type="submit" class="btn-threshold">Update Shared Threshold</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Device .24 Configuration</h2>
+            <hr>
+            <form action="/update-tp-24" method="post">
+                <div class="form-group">
+                    <input type="text" name="tp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Top Profile .24</button>
+            </form>
+            <form action="/update-bp-24" method="post">
+                <div class="form-group">
+                    <input type="text" name="bp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Bottom Profile .24</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Device .25 Configuration</h2>
+            <hr>
+            <form action="/update-tp-25" method="post">
+                <div class="form-group">
+                    <input type="text" name="tp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Top Profile .25</button>
+            </form>
+            <form action="/update-bp-25" method="post">
+                <div class="form-group">
+                    <input type="text" name="bp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Bottom Profile .25</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Device .26 Configuration</h2>
+            <hr>
+            <form action="/update-tp-26" method="post">
+                <div class="form-group">
+                    <input type="text" name="tp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Top Profile .26</button>
+            </form>
+            <form action="/update-bp-26" method="post">
+                <div class="form-group">
+                    <input type="text" name="bp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Bottom Profile .26</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Device .27 Configuration</h2>
+            <hr>
+            <form action="/update-tp-27" method="post">
+                <div class="form-group">
+                    <input type="text" name="tp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Top Profile .27</button>
+            </form>
+            <form action="/update-bp-27" method="post">
+                <div class="form-group">
+                    <input type="text" name="bp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Bottom Profile .27</button>
+            </form>
+        </div>
+        <div class="block">
+            <h2 class="threshold-title">Device .21 Configuration</h2>
+            <hr>
+            <form action="/update-tp-21" method="post">
+                <div class="form-group">
+                    <input type="text" name="tp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Top Profile .21</button>
+            </form>
+            <form action="/update-bp-21" method="post">
+                <div class="form-group">
+                    <input type="text" name="bp" required="">
+                </div>
+                <button type="submit" class="btn-custom">Update Bottom Profile .21</button>
+            </form>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+    <script>
+        // Refresh iframe every 10 seconds
+        setInterval(() => {
+            const iframe = document.getElementById('voltageFrame');
+            iframe.src = iframe.src;
+        }, 10000);
+    </script>
+</body>
+
+</html>

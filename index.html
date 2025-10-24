@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Configuration Update</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
+    <style>
+        body {
+          background: url("/main.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          font-size: 2.2rem;
+          background-size: cover;
+        }
+        body, html {
+          overflow: hidden;
+          height: 100%;
+          margin: 0;
+          color: #65ff00; /* Change text color to #65ff00 */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          text-shadow: .1rem .1rem .1rem black;
+          flex-direction: row-reverse;
+        }
+
+        @keyframes animatedHr {
+          0% { background-position: 0%; }
+          100% { background-position: 100%; }
+        }
+
+        hr {
+          height: 2px;
+          border: 0;
+          background: linear-gradient(to right, darkblue, #1A1A1A, #65ff00);
+          background-size: 200% auto;
+          animation: animatedHr 4s linear infinite;
+        }
+
+        input, button {
+            background-color: #333; /* Darker background for inputs and buttons */
+            border: 1px solid #65ff00; /* Green border for inputs and buttons */
+            color: lightseagreen; /* Light seagreen text for inputs and buttons */
+            margin: 5px 0; /* Spacing for visual separation */
+        }
+
+        .container {
+          width: 100%;
+          max-width: 600px; /* Adjust based on your preference */
+          padding: 20px;
+          box-sizing: border-box;
+          overflow-y: scroll;
+          max-height: 90vh;
+        }
+
+        #voltageFrame {
+          height: 225px;
+          width: 225px;
+          position: fixed;
+          bottom: 10px; /* Adjust as needed */
+          right: 10px; /* Adjust as needed */
+          border: none;
+        }
+
+        #logo {
+          line-height: 50%;
+          width: 175px; /* Reduced by half */
+          height: 125px; /* Reduced by half */
+          font-family: 'Press Start 2P', sans-serif;
+          font-weight: 400;
+          font-style: italic;
+          position: fixed;  /* or absolute, depending on use case */
+          top: 0;
+          left: 0;
+          transform: rotate(-45deg);
+          color: paleturquoise; /* Text color from settings.html */
+          padding: 1.5rem; /* Reduced by half */
+          background-color: rgba(0, 0, 0, 0.5);
+          border-radius: 50%;
+          display: flex;
+          place-items: center;
+          align-items: center;
+          flex-direction: column;
+          text-shadow: 0 0 10px paleturquoise, 0 0 20px paleturquoise, 0 0 30px paleturquoise;
+        }
+
+        #logo span { 
+            position: absolute;
+            top: 6rem; /* Adjusted for the reduced size */
+            left: 6rem; /* Adjusted for the reduced size */
+            transform: translateX(-50%); /* Center the text */  
+            z-index: 2;
+            font-size: 0.25em; /* Reduced to 1/4 size */
+            color: paleturquoise;
+            background: rgba(255, 0, 255, 0.5); /* Magenta background glow */
+            padding: 5px 10px;
+            border-radius: 10px;
+            text-shadow: 0 0 10px paleturquoise, 0 0 20px paleturquoise, 0 0 30px paleturquoise;
+        } 
+
+        .navbar {
+            font-size: 1.75rem; /* Reduced from 2rem by 1/8 */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(0, 0, 0, .7);
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .navbar a,
+        .navbar button {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            padding: 10px 20px;
+            margin: 5px;
+            font-family: 'Press Start 2P', sans-serif;
+            cursor: pointer;
+            text-shadow: 0 0 5px magenta;
+            transition: all .3s ease;
+            font-size: 0.5rem; /* Match the size in the first file */
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+            text-decoration: none;
+            text-align: center; /* Match the alignment in the first file */
+        }
+
+        .navbar a:hover,
+        .navbar button:hover {
+            box-shadow: 0 0 20px magenta, 0 0 30px magenta, 0 0 40px magenta;
+            color: white;
+        }
+
+        /* Custom Scrollbar Styles */
+        /* Works on Chrome, Edge, and Safari */
+        ::-webkit-scrollbar {
+            width: 8px; /* width of the entire scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #333; /* color of the track */
+            border: 2px solid #65ff00; /* add some spacing between the track and handle */
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #333; /* dark background color of the scroll thumb */
+            border-radius: 10px; /* roundness of the scroll thumb */
+            border: 2px solid magenta; /* light seagreen border around the thumb */
+        }
+
+        /* Hover effects */
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: lightseagreen; /* light seagreen color of the scroll thumb when hovered */
+        }
+
+        /* Firefox scrollbar styles */
+        html {
+            scrollbar-width: thin; /* make scrollbar thin */
+            scrollbar-color: magenta #333; /* thumb and track color */
+        }
+
+        .asic {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="logo">
+        <img width="95px" height="95px" src="logo.svg" alt="logo"> <!-- Reduced by half -->
+        <span>Grid&nbsp;Terminator</span>
+    </div>
+    <div id="iframesdiv" class="container">
+        <iframe frameborder="0" allowtransparency="true" class="asic" src="/asic1"></iframe>
+        <iframe frameborder="0" allowtransparency="true" class="asic" src="/asic2"></iframe>
+    </div>
+    <div id="iframesdiv" class="container">
+        <iframe frameborder="0" allowtransparency="true" class="asic" src="/asic3"></iframe>
+        <iframe frameborder="0" allowtransparency="true" class="asic" src="/asic4"></iframe>
+        <iframe frameborder="0" allowtransparency="true" class="asic" src="/asic5"></iframe>
+    </div>
+    <iframe id="voltageFrame" src="/voltage" frameborder="0" allowtransparency="true"></iframe>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/settings.html">Settings</a>
+    </nav>
+    <script>
+        // This function will be called every 10 seconds
+        function refreshVoltageFrame() {
+            var iframe = document.getElementById('voltageFrame'); // Access the iframe by its ID
+            iframe.src = iframe.src; // Re-assign the src attribute to refresh it
+        }
+
+        // Set an interval to call the refreshVoltageFrame function every 10000 milliseconds (10 seconds)
+        setInterval(refreshVoltageFrame, 10000);
+
+        function refreshIframes() {
+            // Select all iframes with the class 'asic'
+            var iframes = document.getElementsByClassName('asic');
+
+            // Refresh each iframe by setting its src attribute to its current src
+            for (var i = 0; i < iframes.length; i++) {
+                var currentSrc = iframes[i].src;
+                // Adding a cache-buster to ensure the iframe reloads the content
+                iframes[i].src = currentSrc.includes('?') ? `${currentSrc}&_=${new Date().getTime()}` : `${currentSrc}?_=${new Date().getTime()}`;
+            }
+        }
+
+        // Set an interval for refreshing iframes every 3 seconds (3000 milliseconds)
+        setInterval(refreshIframes, 3000);
+    </script>
+</body>
+</html>

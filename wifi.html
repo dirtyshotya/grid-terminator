@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Configuration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            background: url('ips.jpg') center center/cover no-repeat fixed;
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 0.9625rem; /* Reduced from 1.925rem by half */
+            color: lightseagreen;
+            overflow: hidden;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-shadow: 0 0 5px magenta, 0 0 10px magenta, 0 0 15px magenta;
+        }
+
+        .navbar {
+            font-size: 1.75rem; /* Reduced from 2rem by 1/8 */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(0, 0, 0, .7);
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .navbar a,
+        .navbar button {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            padding: 5px 10px; /* Reduced from 10px 20px to match other buttons */
+            margin: 5px;
+            font-family: 'Press Start 2P', sans-serif;
+            cursor: pointer;
+            text-shadow: 0 0 5px magenta;
+            transition: all .3s ease;
+            font-size: 0.5rem; /* Adjusted to match the size in the first file */
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+            text-decoration: none;
+            width: 100px; /* Adjusted to match the width in the first file */
+            text-align: center; /* Adjusted to match the alignment in the first file */
+        }
+
+        .navbar a:hover,
+        .navbar button:hover {
+            box-shadow: 0 0 20px magenta, 0 0 30px magenta, 0 0 40px magenta;
+            color: white;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px; /* Increased padding */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            margin-top: 50px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            width: 80%; /* Increased width */
+            padding: 10px; /* Increased padding */
+            margin-top: 5px;
+            font-size: 0.9625rem; /* Adjusted to match form inputs on other pages */
+            text-shadow: 0 0 5px magenta;
+            box-shadow: 0 0 10px magenta;
+        }
+
+        button {
+            background-color: #333;
+            border: 1px solid #65ff00;
+            color: lightseagreen;
+            text-shadow: 0 0 5px magenta;
+            font-family: 'Press Start 2P', sans-serif;
+            padding: 5px 10px; /* Adjusted padding */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.5rem; /* Adjusted font size */
+            box-shadow: 0 0 10px magenta, 0 0 20px magenta, 0 0 30px magenta;
+            width: 100px; /* Adjusted width */
+            margin-top: 5px;
+        }
+
+        button:hover {
+            box-shadow: 0 0 20px magenta, 0 0 30px magenta, 0 0 40px magenta;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/settings.html">Settings</a>
+        <a href="ips.html" class="btn-custom">Set IPs</a>
+        <a href="wifi.html" class="btn-custom">Set Wi-Fi</a>
+    </nav>
+    <div class="container">
+        <h1 class="threshold-title" style="font-size: 1.4rem;">Wi-Fi Configuration</h1> <!-- Adjusted font size -->
+        <form id="wifi-form">
+            <div class="form-group">
+                <label for="ssid" style="font-size: 0.7rem;">SSID:</label> <!-- Adjusted font size -->
+                <input type="text" id="ssid" name="ssid" required>
+            </div>
+            <div class="form-group">
+                <label for="password" style="font-size: 0.7rem;">Password:</label> <!-- Adjusted font size -->
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn-custom">Save</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('wifi-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const ssid = document.getElementById('ssid').value;
+            const password = document.getElementById('password').value;
+            // Add your AJAX request or form submission logic here
+            console.log(`SSID: ${ssid}, Password: ${password}`);
+        });
+    </script>
+</body>
+
+</html>
